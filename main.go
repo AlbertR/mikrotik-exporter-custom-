@@ -17,10 +17,11 @@ import (
 )
 
 var (
-	address     = flag.String("address", "", "address of the device to monitor")
-	configFile  = flag.String("config-file", "", "config file to load")
-	device      = flag.String("device", "", "single device to monitor")
-	insecure    = flag.Bool("insecure", false, "skips verification of server certificate when using TLS (not recommended)")
+	address    = flag.String("address", "", "address of the device to monitor")
+	configFile = flag.String("config-file", "", "config file to load")
+	device     = flag.String("device", "", "single device to monitor")
+	insecure   = flag.Bool("insecure", false, "skips verification of server certificate when using TLS ("+
+		"not recommended)")
 	logFormat   = flag.String("log-format", "json", "logformat text or json (default json)")
 	logLevel    = flag.String("log-level", "debug", "log level")
 	metricsPath = flag.String("path", "/metrics", "path to answer requests on")
@@ -30,10 +31,11 @@ var (
 	user        = flag.String("user", "", "user for authentication with single device")
 	ver         = flag.Bool("version", false, "find the version of binary")
 
-	withBgp     = flag.Bool("with-bgp", false, "retrieves BGP routing information")
+	withBgp = flag.Bool("with-bgp", false, "retrieves BGP routing information")
 
-	withDHCP	= flag.Bool("with-dhcp", false, "retrives DHCP server metrics")
-	withDHCPL   = flag.Bool("with-dhcpl", false, "retrives DHCP server lease metrics")
+	withDHCP     = flag.Bool("with-dhcp", false, "retrives DHCP server metrics")
+	withDHCPL    = flag.Bool("with-dhcpl", false, "retrives DHCP server lease metrics")
+	withFirmware = flag.Bool("with-firmware", false, "retrives Firmware metrics")
 
 	cfg *config.Config
 
@@ -169,11 +171,15 @@ func collectorOptions() []collector.Option {
 	opts := []collector.Option{}
 
 	if *withBgp || cfg.Features.BGP {
-			opts = append(opts, collector.WithBGP())
+		opts = append(opts, collector.WithBGP())
 	}
 
 	if *withDHCP || cfg.Features.DHCP {
-			opts = append(opts, collector.WithDHCP())
+		opts = append(opts, collector.WithDHCP())
+	}
+
+	if *withFirmware || cfg.Features.Firmware {
+		opts = append(opts, collector.WithFirmware())
 	}
 
 	return opts

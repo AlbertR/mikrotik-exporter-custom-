@@ -21,34 +21,34 @@ import (
 )
 
 const (
-		namespace	= "mikrotik"
-		apiPort		= "8728"
-		apiPortTLS	= "8729"
-		dnsPort		= 53
-		DefaultTimeout = 5 * time.Second
+	namespace      = "mikrotik"
+	apiPort        = "8728"
+	apiPortTLS     = "8729"
+	dnsPort        = 53
+	DefaultTimeout = 5 * time.Second
 )
 
 var (
-		scrapeDurationDesc = prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "scrape", "collector_duration_seconds"),
-			"mikrotik_exporter: duration of a collector scrape",
-			[]string{"device"},
-			nil,
-		)
-		scrapeSuccessDesc = prometheus.NewDesc(
-			prometheus.BuildFQName(namespace, "scrape", "collector_success"),
-			"mikrotik_exporter: whether a collector succeeded",
-			[]string{"device"},
-			nil,
-		)
+	scrapeDurationDesc = prometheus.NewDesc(
+		prometheus.BuildFQName(namespace, "scrape", "collector_duration_seconds"),
+		"mikrotik_exporter: duration of a collector scrape",
+		[]string{"device"},
+		nil,
+	)
+	scrapeSuccessDesc = prometheus.NewDesc(
+		prometheus.BuildFQName(namespace, "scrape", "collector_success"),
+		"mikrotik_exporter: whether a collector succeeded",
+		[]string{"device"},
+		nil,
+	)
 )
 
 type collector struct {
-		devices		[]config.Device
-		collectors	[]routerOSCollector
-		timeout		time.Duration
-		enableTLS	bool
-		insecureTLS	bool
+	devices     []config.Device
+	collectors  []routerOSCollector
+	timeout     time.Duration
+	enableTLS   bool
+	insecureTLS bool
 }
 
 // WithBGP enables BGP routing metrics
@@ -61,14 +61,21 @@ func WithBGP() Option {
 // WithDHCP enables DHCP server metrics
 func WithDHCP() Option {
 	return func(c *collector) {
-			c.collectors = append(c.collectors, newDHCPCollector())
+		c.collectors = append(c.collectors, newDHCPCollector())
 	}
 }
 
 //WithDHCP enables DHCP server lease metrics
 func WithDHCPL() Option {
 	return func(c *collector) {
-			c.collectors = append(c.collectors, newDHCPLCollector())
+		//c.collectors = append(c.collectors, newDHCPLCollector())
+	}
+}
+
+// WithFirmware enables firmware metrics
+func WithFirmware() Option {
+	return func(c *collector) {
+		c.collectors = append(c.collectors, newFirmwareCollector())
 	}
 }
 

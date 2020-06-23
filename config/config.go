@@ -9,12 +9,14 @@ import (
 
 // Config represent the configuration for the exporter
 type Config struct {
-	Devices []Device `yaml:"devices"`
+	Devices  []Device `yaml:"devices"`
 	Features struct {
-		BGP		bool `yaml:"bgp,omitempty"`
-		DHCP	bool `yaml:"dhcp,omitempty"`
+		BGP      bool `yaml:"bgp,omitempty"`
+		DHCP     bool `yaml:"dhcp,omitempty"`
+		Firmware bool `yaml:"firmware,omitempty"`
 	} `yaml:"features,omitempty"`
 }
+
 // Device represent a target device
 type Device struct {
 	Name     string    `yaml:"name"`
