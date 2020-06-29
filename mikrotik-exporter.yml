@@ -1,0 +1,11 @@
+devices:
+  - name: Mikrotik
+    address: 192.168.35.35
+    user: prometheus
+    password: changeme
+
+features:
+    bgp: true
+    firmware: true
+    dhcp: true
+    dhcpl: true

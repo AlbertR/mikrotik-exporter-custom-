@@ -178,6 +178,10 @@ func collectorOptions() []collector.Option {
 		opts = append(opts, collector.WithDHCP())
 	}
 
+	if *withDHCPL || cfg.Features.DHCPL {
+		opts = append(opts, collector.WithDHCPL())
+	}
+
 	if *withFirmware || cfg.Features.Firmware {
 		opts = append(opts, collector.WithFirmware())
 	}

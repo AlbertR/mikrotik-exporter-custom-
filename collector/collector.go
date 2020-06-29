@@ -68,7 +68,7 @@ func WithDHCP() Option {
 //WithDHCP enables DHCP server lease metrics
 func WithDHCPL() Option {
 	return func(c *collector) {
-		//c.collectors = append(c.collectors, newDHCPLCollector())
+		c.collectors = append(c.collectors, newDHCPLCollector())
 	}
 }
 
