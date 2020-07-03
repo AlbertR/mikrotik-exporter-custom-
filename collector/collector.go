@@ -79,6 +79,13 @@ func WithFirmware() Option {
 	}
 }
 
+// WithWLANIF enables wlan interfaces matrics
+func WithWLANIF() Option {
+	return func(c *collector) {
+		c.collectors = append(c.collectors, newWLANIFCollector())
+	}
+}
+
 // Option applies option to collector
 type Option func(*collector)
 

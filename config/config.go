@@ -15,6 +15,7 @@ type Config struct {
 		DHCP     bool `yaml:"dhcp,omitempty"`
 		DHCPL    bool `yaml:"dhcpl,omitempty"`
 		Firmware bool `yaml:"firmware,omitempty"`
+		WLANIF   bool `yaml:"wlanif,omitempty"`
 	} `yaml:"features,omitempty"`
 }
 

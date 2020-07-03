@@ -36,6 +36,7 @@ var (
 	withDHCP     = flag.Bool("with-dhcp", false, "retrives DHCP server metrics")
 	withDHCPL    = flag.Bool("with-dhcpl", false, "retrives DHCP server lease metrics")
 	withFirmware = flag.Bool("with-firmware", false, "retrives Firmware metrics")
+	withWlanIF   = flag.Bool("with-wlanif", false, "retrive wlan interface metrics")
 
 	cfg *config.Config
 
@@ -184,6 +185,10 @@ func collectorOptions() []collector.Option {
 
 	if *withFirmware || cfg.Features.Firmware {
 		opts = append(opts, collector.WithFirmware())
+	}
+
+	if *withWlanIF || cfg.Features.WLANIF {
+		opts = append(opts, collector.WithWLANIF())
 	}
 
 	return opts

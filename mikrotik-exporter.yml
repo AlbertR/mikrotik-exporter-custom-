@@ -9,3 +9,4 @@ features:
     firmware: true
     dhcp: true
     dhcpl: true
+    wlanif: true
