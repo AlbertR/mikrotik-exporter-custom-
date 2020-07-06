@@ -10,3 +10,4 @@ features:
     dhcp: true
     dhcpl: true
     wlanif: true
+    wlansta: true

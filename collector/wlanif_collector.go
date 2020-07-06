@@ -9,18 +9,18 @@ import (
 	"strings"
 )
 
-type wlanifCollector struct {
+type wlanIFCollector struct {
 	props        []string
 	descriptions map[string]*prometheus.Desc
 }
 
 func newWLANIFCollector() routerOSCollector {
-	c := &wlanifCollector{}
+	c := &wlanIFCollector{}
 	c.init()
 	return c
 }
 
-func (c *wlanifCollector) init() {
+func (c *wlanIFCollector) init() {
 	c.props = []string{"channel", "registered-clients", "noise-floor", "overall-tx-ccq"}
 	labelNames := []string{"name", "address", "interface", "channel"}
 	c.descriptions = make(map[string]*prometheus.Desc)
@@ -29,13 +29,13 @@ func (c *wlanifCollector) init() {
 	}
 }
 
-func (c *wlanifCollector) describe(ch chan<- *prometheus.Desc) {
+func (c *wlanIFCollector) describe(ch chan<- *prometheus.Desc) {
 	for _, d := range c.descriptions {
 		ch <- d
 	}
 }
 
-func (c *wlanifCollector) collect(ctx *collectorContext) error {
+func (c *wlanIFCollector) collect(ctx *collectorContext) error {
 	names, err := c.fetchInterfaceNames(ctx)
 	if err != nil {
 		return err
@@ -51,7 +51,7 @@ func (c *wlanifCollector) collect(ctx *collectorContext) error {
 	return nil
 }
 
-func (c *wlanifCollector) fetchInterfaceNames(ctx *collectorContext) ([]string, error) {
+func (c *wlanIFCollector) fetchInterfaceNames(ctx *collectorContext) ([]string, error) {
 	reply, err := ctx.client.Run("/interface/wireless/print", "?disabled=false", "=.proplist=name")
 	if err != nil {
 		log.WithFields(log.Fields{
@@ -69,7 +69,7 @@ func (c *wlanifCollector) fetchInterfaceNames(ctx *collectorContext) ([]string, 
 	return names, nil
 }
 
-func (c *wlanifCollector) collectForInterface(iface string, ctx *collectorContext) error {
+func (c *wlanIFCollector) collectForInterface(iface string, ctx *collectorContext) error {
 	reply, err := ctx.client.Run("/interface/wireless/monitor", fmt.Sprintf("=numbers=%s", iface), "=once=",
 		"=.proplist="+strings.Join(c.props, ","))
 	if err != nil {
@@ -87,7 +87,7 @@ func (c *wlanifCollector) collectForInterface(iface string, ctx *collectorContex
 	return nil
 }
 
-func (c *wlanifCollector) collectMetricForProperty(property, iface string, re *proto.Sentence, ctx *collectorContext) {
+func (c *wlanIFCollector) collectMetricForProperty(property, iface string, re *proto.Sentence, ctx *collectorContext) {
 	desc := c.descriptions[property]
 	channel := re.Map["channel"]
 	if re.Map[property] == "" {

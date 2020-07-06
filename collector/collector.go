@@ -86,6 +86,13 @@ func WithWLANIF() Option {
 	}
 }
 
+// WithWLANSTA enables wlan station metrics
+func WithWLANSTA() Option {
+	return func(c *collector) {
+		c.collectors = append(c.collectors, newWLANSTACollector())
+	}
+}
+
 // Option applies option to collector
 type Option func(*collector)
 
