@@ -46,7 +46,7 @@ tx-drop
 
 > Wireles Interface and Status
 >
-> Metrics^
+> Metrics:
 ```
 interface
 mac-address
@@ -63,7 +63,7 @@ overall-tx-ccq
 
 > DHCP Servers and Leases
 >
-> Metrics^
+> Metrics:
 ```
 name
 address
