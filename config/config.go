@@ -17,6 +17,7 @@ type Config struct {
 		Firmware bool `yaml:"firmware,omitempty"`
 		WLANIF   bool `yaml:"wlanif,omitempty"`
 		WLANSTA  bool `yaml:"wlansta,omitempty"`
+		Routes   bool `yaml:"routes,omitempty"`
 	} `yaml:"features,omitempty"`
 }
 
