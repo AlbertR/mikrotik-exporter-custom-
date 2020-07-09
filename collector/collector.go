@@ -100,6 +100,13 @@ func WithRoutes() Option {
 	}
 }
 
+//WithDHCPP enables DHCP Pool metrics
+func WithDHCPP() Option {
+	return func(c *collector) {
+		c.collectors = append(c.collectors, NewDHCPPCollector())
+	}
+}
+
 // Option applies option to collector
 type Option func(*collector)
 

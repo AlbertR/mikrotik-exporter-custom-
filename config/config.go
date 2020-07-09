@@ -18,6 +18,7 @@ type Config struct {
 		WLANIF   bool `yaml:"wlanif,omitempty"`
 		WLANSTA  bool `yaml:"wlansta,omitempty"`
 		Routes   bool `yaml:"routes,omitempty"`
+		DHCPP    bool `yaml:"dhcpp,omitempty"`
 	} `yaml:"features,omitempty"`
 }
 

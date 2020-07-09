@@ -39,6 +39,7 @@ var (
 	withWlanIF   = flag.Bool("with-wlanif", false, "retrive wlan interface metrics")
 	withWlanSTA  = flag.Bool("with-wlansta", false, "retrive connected wlan station metrics")
 	withRoutes   = flag.Bool("with-routes", false, "retrive IP routes metrics")
+	withDHCPP    = flag.Bool("with-dhcpp", false, "retrive DHCP Pool metrics")
 
 	cfg *config.Config
 
@@ -201,5 +202,8 @@ func collectorOptions() []collector.Option {
 		opts = append(opts, collector.WithRoutes())
 	}
 
+	if *withDHCPP || cfg.Features.DHCPP {
+		opts = append(opts, collector.WithDHCPP())
+	}
 	return opts
 }

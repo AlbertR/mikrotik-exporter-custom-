@@ -8,7 +8,8 @@ features:
     bgp: true
     firmware: true
     dhcp: true
-    dhcpl: true
+    dhcpl: false
     wlanif: true
     wlansta: true
     routes: true
+    dhcpp: true
