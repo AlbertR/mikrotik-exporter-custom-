@@ -93,6 +93,13 @@ func WithWLANSTA() Option {
 	}
 }
 
+//WithRoutes enables IP routes metrics
+func WithRoutes() Option {
+	return func(c *collector) {
+		c.collectors = append(c.collectors, newRoutesCollector())
+	}
+}
+
 // Option applies option to collector
 type Option func(*collector)
 

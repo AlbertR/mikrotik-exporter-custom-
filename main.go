@@ -38,6 +38,7 @@ var (
 	withFirmware = flag.Bool("with-firmware", false, "retrives Firmware metrics")
 	withWlanIF   = flag.Bool("with-wlanif", false, "retrive wlan interface metrics")
 	withWlanSTA  = flag.Bool("with-wlansta", false, "retrive connected wlan station metrics")
+	withRoutes   = flag.Bool("with-routes", false, "retrive IP routes metrics")
 
 	cfg *config.Config
 
@@ -194,6 +195,10 @@ func collectorOptions() []collector.Option {
 
 	if *withWlanSTA || cfg.Features.WLANSTA {
 		opts = append(opts, collector.WithWLANSTA())
+	}
+
+	if *withRoutes || cfg.Features.Routes {
+		opts = append(opts, collector.WithRoutes())
 	}
 
 	return opts

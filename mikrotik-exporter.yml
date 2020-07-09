@@ -11,3 +11,4 @@ features:
     dhcpl: true
     wlanif: true
     wlansta: true
+    routes: true
