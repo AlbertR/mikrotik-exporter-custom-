@@ -107,6 +107,13 @@ func WithDHCPP() Option {
 	}
 }
 
+// WithIPAddr enables IP Address metrics
+func WithIPAddr() Option {
+	return func(c *collector) {
+		c.collectors = append(c.collectors, newIPAddressCollector())
+	}
+}
+
 // Option applies option to collector
 type Option func(*collector)
 

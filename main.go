@@ -40,8 +40,8 @@ var (
 	withWlanSTA  = flag.Bool("with-wlansta", false, "retrive connected wlan station metrics")
 	withRoutes   = flag.Bool("with-routes", false, "retrive IP routes metrics")
 	withDHCPP    = flag.Bool("with-dhcpp", false, "retrive DHCP Pool metrics")
-
-	cfg *config.Config
+	withIPAddr   = flag.Bool("with-ipaddr", false, "retrives IP Addresses metrics")
+	cfg          *config.Config
 
 	appVersion = "DEVELOPMENT"
 	shortSha   = "0xFACEBEAD"
@@ -204,6 +204,10 @@ func collectorOptions() []collector.Option {
 
 	if *withDHCPP || cfg.Features.DHCPP {
 		opts = append(opts, collector.WithDHCPP())
+	}
+
+	if *withIPAddr || cfg.Features.IPAddr {
+		opts = append(opts, collector.WithIPAddr())
 	}
 	return opts
 }

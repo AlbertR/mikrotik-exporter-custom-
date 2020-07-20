@@ -83,3 +83,14 @@ name
 next-pool
 ranges
 ```
+
+> IP Addresses
+>
+> Metrics:
+```
+name
+address
+interface
+netmask
+network
+```

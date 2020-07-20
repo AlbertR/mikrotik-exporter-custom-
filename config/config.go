@@ -19,6 +19,7 @@ type Config struct {
 		WLANSTA  bool `yaml:"wlansta,omitempty"`
 		Routes   bool `yaml:"routes,omitempty"`
 		DHCPP    bool `yaml:"dhcpp,omitempty"`
+		IPAddr   bool `yaml:"ipaddr,omitempty"`
 	} `yaml:"features,omitempty"`
 }
 

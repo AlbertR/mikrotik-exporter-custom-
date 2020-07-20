@@ -13,3 +13,4 @@ features:
     wlansta: true
     routes: true
     dhcpp: true
+    ipaddr: true
