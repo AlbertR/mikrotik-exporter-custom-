@@ -41,6 +41,7 @@ var (
 	withRoutes   = flag.Bool("with-routes", false, "retrive IP routes metrics")
 	withDHCPP    = flag.Bool("with-dhcpp", false, "retrive DHCP Pool metrics")
 	withIPAddr   = flag.Bool("with-ipaddr", false, "retrives IP Addresses metrics")
+	withPPP      = flag.Bool("with-ppp", false, "retrive PPP interfaces metrics")
 	cfg          *config.Config
 
 	appVersion = "DEVELOPMENT"
@@ -209,5 +210,10 @@ func collectorOptions() []collector.Option {
 	if *withIPAddr || cfg.Features.IPAddr {
 		opts = append(opts, collector.WithIPAddr())
 	}
+
+	if *withPPP || cfg.Features.PPP {
+		opts = append(opts, collector.WithPPP())
+	}
+
 	return opts
 }

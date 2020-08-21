@@ -94,3 +94,14 @@ interface
 netmask
 network
 ```
+
+> PPP Profiles
+>
+> Metrics:
+```
+name
+local-address
+remote-address
+address-list
+dns-server
+```

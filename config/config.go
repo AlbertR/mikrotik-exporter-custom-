@@ -20,6 +20,7 @@ type Config struct {
 		Routes   bool `yaml:"routes,omitempty"`
 		DHCPP    bool `yaml:"dhcpp,omitempty"`
 		IPAddr   bool `yaml:"ipaddr,omitempty"`
+		PPP      bool `yaml:"ppp,omitempty"`
 	} `yaml:"features,omitempty"`
 }
 

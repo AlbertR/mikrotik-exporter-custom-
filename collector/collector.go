@@ -114,6 +114,13 @@ func WithIPAddr() Option {
 	}
 }
 
+// WithPPP enables PPP interfaces metrics
+func WithPPP() Option {
+	return func(c *collector) {
+		c.collectors = append(c.collectors, newPPPInterfacesCollector())
+	}
+}
+
 // Option applies option to collector
 type Option func(*collector)
 
